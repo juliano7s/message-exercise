@@ -19,7 +19,7 @@ public class Main {
 
         SaleStorage saleStorage = new InMemorySaleStorage();
         MessageParser messageParser = new SimpleMessageParser();
-        SimpleMessageProcessor messageProcessor = new SimpleMessageProcessor(saleStorage);
+        MessageProcessor messageProcessor = new SimpleMessageProcessor(saleStorage);
         MessageReader messageReader = new FileMessageReader(MESSAGE_INBOX_FOLDER);
 
         int messageCount = 0;
@@ -95,7 +95,7 @@ public class Main {
             if (adjustmentsByProduct != null && adjustmentsByProduct.size() > 0) {
                 System.out.println(String.format("Adjustments made to '%s'", soldProduct));
                 for (Message message : adjustmentsByProduct) {
-                    System.out.println(String.format("    %s $%.2f", message.getOperation(), message.getAdjustment()));
+                    System.out.println(String.format("    %s %.2f", message.getOperation(), message.getAdjustment()));
                 }
                 System.out.println();
             }
